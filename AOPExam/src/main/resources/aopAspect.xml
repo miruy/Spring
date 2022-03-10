@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:aop="http://www.springframework.org/schema/aop"
+
+xsi:schemaLocation=
+"http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd">
+	
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	
+	<bean id="exeTimeAspect2" class="aspect.ExeTimeAspect2"></bean>
+	<bean id="implCal" class="chap06.ImplCalculator"></bean>
+	<bean id="recCal" class="chap06.RecCalculator"></bean>
+</beans>
+
+<!-- 
+	 <aop:aspectj-autoproxy>태그를 사용하면 @Aspect가 적용된 Bean객체를 Advice로 사용
+	 exeTimeAspect Bean을 Advice로 사용하여 공통기능을 지정한 Bean객체에 적용하게 됨 
+ -->
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

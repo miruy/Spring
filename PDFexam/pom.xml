@@ -1,0 +1,39 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.spring</groupId>
+	<artifactId>hongPDF</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<!-- 설정파일에서 사용할 속성 -->
+	<properties>
+		<java-version>1.8</java-version>
+		<PDFBox-version>3.0.3</PDFBox-version>
+	</properties>
+
+	<!-- PDF출력을 위한 의존성 라이브러리 설정 -->
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.pdfbox</groupId>
+			<artifactId>pdfbox</artifactId>
+			<version>2.0.25</version>
+		</dependency>
+	</dependencies>
+
+	<!-- 빌드에 사용할 플러그인 설정 -->
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>${java-version}</source>
+					<target>${java-version}</target>
+					<encoding>utf-8</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

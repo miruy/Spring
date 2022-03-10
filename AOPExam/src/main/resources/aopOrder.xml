@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:aop="http://www.springframework.org/schema/aop"
+
+xsi:schemaLocation=
+"http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!-- 공통기능을 제공할 클래스 Bean 목록으로 등록  -->
+	<bean id="exeTimeAspect" class="aspect.ExeTimeAspect"></bean>
+	<bean id="cacheAspect" class="aspect.CacheAspect"></bean>	
+	
+	<!-- Aspect 설정 : 
+	Adive(기능)을 Pointcut(기능을 적용할 부분(joinPoint)의 *범위*)에 적용 -->
+	<aop:config proxy-target-class="true">
+	
+											<!-- order : 우선순위를 나타내며 
+										Before - 0,1 순서 / After - 1.0 순서 
+											Before와 After의 순서가 서로 반대이며, 
+													After는 우선 적인 것을 나중에  -->
+		<aop:aspect id="measureAspect" ref="exeTimeAspect" order="0">
+			<aop:pointcut expression="execution(public * chap06..*(..))" id="publicMethod"/>
+			<!-- Around태그 : Around어노테이션을 적용한 메서드 실행 전/후 예외 발생 시 Advice(공통기능)실행  -->
+			<aop:around method="measure" pointcut-ref="publicMethod"/>
+		</aop:aspect>
+	</aop:config>
+	
+	<aop:config proxy-target-class="true">
+		<aop:aspect id="calculatorCache" ref="cacheAspect" order="1">
+			<aop:pointcut expression="execution(public * chap06..*(..))" id="calculatorMethod"/>
+			<!-- Around태그 : Around어노테이션을 적용한 메서드 실행 전/후 예외 발생 시 Advice(공통기능)실행  -->
+			<aop:around method="execute" pointcut-ref="calculatorMethod"/>
+		</aop:aspect>
+	</aop:config>
+	
+	<!-- 공통기능으로 사용할 Aspect구현 클래스  -->
+	<bean id="implCal" class="chap06.ImplCalculator"></bean>
+	<bean id="recCal" class="chap06.RecCalculator"></bean>
+</beans>
+
+<!-- 
+	정리
+ 	1. measureAspect이름의 관점을 정의 - 해당 관점으로 사용할 bean이름을 ref 속성으로 지정
+ 	2. pointcut태그 : 이름이 publicMethod인 Pountcut을 정의 
+ 	3. expression="execution(..)" : execution속성으로 public * chap06하위의 모든 메서드들이 호출될 때 라는 시점을 명시
+ 	4. publicMethod pointcut에서 measure메서드를 Around시점에 호출되도록 설정 
+ 	-->
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+ 	<bean id="g1" class="springexam00.Greeter"></bean>  
+ 	<!-- 객체생성 태그 변수/클래스  -->
+ 	<bean id="g2" class="springexam00.Greeter">
+ 		<constructor-arg value="이순신"/>
+ 	</bean>
+ 	<bean id="g3" class="springexam00.Greeter">
+ 		<constructor-arg value="강감찬"/>
+ 	</bean>
+</beans>

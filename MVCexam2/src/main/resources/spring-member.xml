@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+xmlns="http://www.springframework.org/schema/beans"
+xmlns:tx="http://www.springframework.org/schema/tx"
+xmlns:mvc="http://www.springframework.org/schema/mvc"
+xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<!-- 위에 mvc : mvc관련 설정 추가 -->
+
+	<!-- dataSource설정 : = context.xml (유저아이디,비밀번호 등 DB계정)
+			커넥션을 관리하는 애=즉, 나의 DB와 연결되는 애-->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+			destroy-method="close">
+		<property name="driverClass" value="oracle.jdbc.OracleDriver"></property>
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@itthis.kr:1521:xe"></property>
+		<property name="user" value="urimkim"></property>
+		<property name="password" value="1234"></property>
+		
+		<property name="maxPoolSize" value="100"></property>
+		<property name="maxIdleTime" value="600"></property>
+		<property name="idleConnectionTestPeriod" value="300"></property>
+	</bean>
+	
+	<bean id="memberDao" class="spring.MemberDao">
+		<constructor-arg ref="dataSource"></constructor-arg>
+	</bean>
+	
+	<!-- 데이터소스는 커넥션을 관리하는 애니까 얘가 가지고 있는 기능들을 가지고 트랜잭션을 처리해줘 -->
+	<bean id="transactionManager"
+				class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+			<property name="dataSource" ref="dataSource"></property>	
+	</bean>
+	
+	<!-- 누가 트랜잭션을 처리하는지 설정하는 태그 -->
+	<tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
+	
+	<bean id="changePwdSvc" class="spring.ChangePasswordService">
+			<constructor-arg ref="memberDao"></constructor-arg>
+	</bean>
+	
+	<bean id="memberRegSvc" class="spring.MemberRegisterService">
+			<constructor-arg ref="memberDao"></constructor-arg>
+	</bean>
+</beans>

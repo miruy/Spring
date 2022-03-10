@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- DI(의존주입)를 이용한 객체 생성 -->
+ 	<bean id="memberDao" class="spring.MemberDao"></bean>
+ 	
+ 	<bean id="memberRegSvc" class="spring.MemberRegisterService">
+ 			<!-- 생성-값(아규먼트) / 생성자의 매개변수로 객체를 전달하는 태그 -->
+ 			<constructor-arg ref="memberDao"></constructor-arg>
+ 			<!-- == new MemberRegisterService(memberDao) -->
+ 	</bean>
+ 	
+ 	<bean id="changePwdSvc" class="spring.ChangePasswordService">
+ 			<constructor-arg ref="memberDao"></constructor-arg>	
+ 			<!-- == new changePasswordService(memberDao) -->
+ 	</bean>
+ 	
+ 	<bean id="memberPrinter" class="spring.MemberPrinter"></bean>
+ 	
+ 	<bean id="listPrinter" class="spring.MemberListPrinter">
+ 		<constructor-arg ref="memberDao"></constructor-arg>
+ 		<constructor-arg ref="memberPrinter"></constructor-arg>
+ 		<!-- 생성자의 인자가 2개(memberDao, memberPrinter) -->
+ 	</bean>
+ 	
+ 	<bean id="infoPrinter" class="spring.MemberInfoPrinter">
+ 		<!-- set메서드와 property태그로 속성을 지정하는 방식 -->
+		<property name="memberDao" ref="memberDao"></property>
+		<property name="memberPrinter" ref="memberPrinter"></property>
+ 	</bean>
+ 	
+ 	<bean id="versionPrinter" class="spring.VersionPrinter">
+ 		<property name="majorVersion" value="4"></property>
+ 		<property name="minorVersion" value="1"></property>
+ 	</bean>
+ 	
+</beans>
+
+
+
+
+
+
+
+

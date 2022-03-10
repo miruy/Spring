@@ -1,0 +1,43 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.exam</groupId>
+  <artifactId>springexam00</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <!-- 설정파일에서 사용할 속성 정의 -->
+  <properties>
+  	<java-version>1.8</java-version>
+  	<springframwork-version>4.3.25.RELEASE</springframwork-version>
+  </properties>
+  
+  <!-- 의존 라이브러리 선언 -->
+  <dependencies>
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-context</artifactId>
+  		<version>${springframwork-version}</version>
+  		<!-- 여러가지 아키택쳐들이 추가될 예정 -->
+  	</dependency>
+  </dependencies>
+  
+  <!-- 빌드에 사용할 플러그인 설정 -->
+  <build>
+  	<plugins>
+  		<plugin>
+  			<artifactId>maven-compiler-plugin</artifactId>
+  			<version>3.1</version>
+  			<configuration>
+  				<source>${java-version}</source>
+  				<target>${java-version}</target>
+  				<encoding>utf-8</encoding>
+  			</configuration>
+  		</plugin>
+  	</plugins>
+  </build>
+  
+</project>
+
+
+
+
+

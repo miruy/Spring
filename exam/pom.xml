@@ -1,0 +1,46 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.itthis</groupId> <!-- vm -->
+  <artifactId>exam</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <!-- 내가 함수로 정의하고 싶은 것을 태그로 만들어 정의(같은 데이터 사용 시 태그를 변수처럼 사용) -->
+  <properties>
+  	<java-version>1.8</java-version>
+  	<springframework-version>4.3.25.RELEASE</springframework-version>
+  </properties>
+  
+  <!-- dependencies : 의존 라이브러리 정의 (메이븐이 자동으로 추가해줄 라이브러리 설정) -->
+  	<dependencies> <!-- 복수형 태그 안에 꼭 단수형 태그 정의 -->
+  		<dependency>
+  		<!-- spring-context모듈 사용을 위한 코드 -->
+  			<groupId>org.springframework</groupId>	
+  			<!-- spring-context이 도트를 기준으로 폴더 안에 폴더 안에 있음 -->
+  			<artifactId>spring-context</artifactId>	 
+  			<!-- spring-context의 프로젝트 명의 의미 -->
+  			<version>${springframework-version}</version>
+  			<!-- 사용하는 spring-context 의 버전을 태그변수로 사용 -->
+  		</dependency>
+  	</dependencies>
+  	
+  	<build>
+  		<plugins>
+  			<plugin>
+  				<!-- maven에 플러그처럼 꽂아 사용하기 위한 설정 -->
+  				<artifactId>maven-compiler-plugin</artifactId>
+  				<version>3.1</version>
+  				<configuration> <!-- : 구성 -->
+  					<source>${java-version}</source>
+  					<target>${java-version}</target>
+  					<encoding>utf-8</encoding>
+  				</configuration>
+  			</plugin>
+  		</plugins>
+  	</build>
+  	
+</project>
+
+<!-- # maven에서 한개의 모듈을 artifact라는 이름의 단위로 관리 
+	 # 위 설정을 보면 해당 프로젝트는 spring-context artifact에 의존한다.
+	 # 의존 모듈을 사용하려면 maven리퍼지토리를 통해 다운로드 	
+-->

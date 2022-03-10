@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:context="http://www.springframework.org/schema/context"
+
+xsi:schemaLocation=
+"http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<!-- 밑의 선언을 하면 @Autowired 처리를 할 수 있으며, 
+	     의존관련설정():constructor태그/property태그 를 하지 않아도 됨
+	     스프링이 타입을 이용해 자동으로 의존대상 객체를 검색하여 지정함 
+	     (위에 context링크 3개 추가) -->
+	<context:annotation-config></context:annotation-config>
+	
+	<!-- DI(의존주입)를 이용한 객체 생성 -->
+ 	<bean id="memberDao" class="spring.MemberDao"></bean>
+ 	
+ 	<bean id="memberRegSvc" class="spring.MemberRegisterService">
+ 			<!-- 생성-값(아규먼트) / 생성자의 매개변수로 객체를 전달하는 태그 -->
+<!--  			<constructor-arg ref="memberDao"></constructor-arg> -->
+ 			<!-- == new MemberRegisterService(memberDao) -->
+ 	</bean>
+ 	
+<!--  	<bean id="changePwdSvc" class="spring.ChangePasswordService"> -->
+<!--  			<constructor-arg ref="memberDao"></constructor-arg>	 -->
+ 			<!-- == new changePasswordService(memberDao) -->
+<!--  	</bean> -->
+ 	
+<!--  	<bean id="memberPrinter" class="spring.MemberPrinter"></bean> -->
+ 	<bean id="printer1" class="spring.MemberPrinter">
+ 		<qualifier value="sysout"></qualifier>
+ 	</bean>
+ 	<bean id="printer2" class="spring.MemberPrinter"></bean>
+ 	
+<!--  	<bean id="listPrinter" class="spring.MemberListPrinter"> -->
+<!--  		<constructor-arg ref="memberDao"></constructor-arg> -->
+<!--  		<constructor-arg ref="memberPrinter"></constructor-arg> -->
+ 		<!-- 생성자의 인자가 2개(memberDao, memberPrinter) -->
+<!--  	</bean> -->
+ 	
+ 	<bean id="infoPrinter" class="spring.MemberInfoPrinter">
+ 		<!-- set메서드와 property태그로 속성을 지정하는 방식 -->
+<!-- 		<property name="memberDao" ref="memberDao"></property> -->
+<!-- 		<property name="memberPrinter" ref="memberPrinter"></property> -->
+ 	</bean>
+ 	
+<!--  	<bean id="versionPrinter" class="spring.VersionPrinter"> -->
+ 		<!-- 기본타입형을 속성으로 지정하기 -->
+<!--  		<property name="majorVersion" value="4"></property> -->
+<!--  		<property name="minorVersion" value="1"></property> -->
+<!--  	</bean> -->
+ 	
+</beans>
+
+
+
+
+
+
+
+

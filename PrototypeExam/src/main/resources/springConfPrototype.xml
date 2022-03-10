@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:context="http://www.springframework.org/schema/context"
+xsi:schemaLocation=
+"http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- 자바코드로 설정파일 만들 때 사용(자바파일에 어노테이션으로 설정하는 것
+	해당 프로그램에서 사용안함) -->
+ 	<context:annotation-config></context:annotation-config>
+ 	
+ 	<!-- bean태그안에 scope="prototype"을 추가하면 여러개의 객체 생성 -->
+ 	<bean id="client" class="spring.Client" scope="prototype">
+ 		<property name="host" value="서버"></property>
+ 	</bean>
+</beans>

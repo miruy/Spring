@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:context="http://www.springframework.org/schema/context"
+xmlns:aop="http://www.springframework.org/schema/aop"
+xsi:schemaLocation=
+"http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+ 	<!-- 프록시를 이용한 aop설정 -->
+ 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+ 	
+ 	<bean id="myAspectBefore" class="aop08.MyAspectBefore "></bean>
+ 	<bean id="myAspectAfter" class="aop08.MyAspectAfter"></bean>
+ 	<bean id="myAspect3" class="aop08.MyAspect3"></bean>
+ 	<bean id="alice" class="aop08.프로게이머"></bean>
+ 	<bean id="bob" class="aop08.프로그래머"></bean>
+ 	
+ 	<!-- POJO기반은 xml설정파일에다가 Aspect태그로 선언  -->
+ 	<aop:config>
+ 		<aop:pointcut expression="execution(* usingComputer(..))" id="myPointcut"/>
+ 		<aop:aspect ref="myAspectBefore">
+ 			<aop:before method="bootingAndLogin" pointcut-ref="myPointcut"/>
+ 		</aop:aspect>
+ 		
+ 		<aop:aspect ref="myAspectAfter">
+ 			<aop:after method="shutdownComp" pointcut-ref="myPointcut"/>
+ 		</aop:aspect>
+ 		
+ 		<aop:aspect ref="myAspect3">
+			<aop:after-returning method="finished" pointcut-ref="myPointcut"/>
+		</aop:aspect>
+ 	</aop:config>	
+ 	
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+

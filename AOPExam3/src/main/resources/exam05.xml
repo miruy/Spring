@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans
+  http://www.springframework.org/schema/beans/spring-beans.xsd
+  http://www.springframework.org/schema/context
+  http://www.springframework.org/schema/context/spring-context.xsd
+  http://www.springframework.org/schema/aop
+  http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+  
+  <aop:aspectj-autoproxy/>
+  
+  <bean id="timeAspect" class="exam05.TimeAspect"></bean>
+  <bean id="calcImpl" class="exam05.CalculatorImpl"></bean>
+  <bean id="calcRecu" class="exam05.CalculatorRecu"></bean>
+  <bean id="cacheAspect" class="exam05.CacheAspect"></bean>
+
+
+<!--
+  	 한곳에 공통기능이 동일하게 적용되야 한다면 order를 조작해야하므로 order태그 작성함 
+  	timeCalc (Before): 우선순위 낮음 0,1,2..
+  	cacheAspect (After): 우선순위 높음 ..2.1,0
+  	따라서, 메서드들을 다 사용할 건데 그 중에서도 먼저 실행하고자 하는 메서드에게 높은(먼저) 순서를 주면 됨 
+  	-->
+  <aop:config>
+  	<aop:pointcut expression="execution(* factorial(..))" id="myPointcut"/>
+  	<aop:aspect ref="timeAspect" order="2">
+  		<aop:around method="timeCalc" pointcut-ref="myPointcut"/>
+  	</aop:aspect>
+  </aop:config>
+  
+  <aop:config>
+  	<aop:pointcut expression="execution(* factorial(..))" id="myPointcut"/>
+  	<aop:aspect ref="cacheAspect" order="1">
+  		<aop:around method="caching" pointcut-ref="myPointcut"/>
+  	</aop:aspect>
+  </aop:config> 
+
+</beans>

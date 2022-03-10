@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:context="http://www.springframework.org/schema/context"
+xmlns:aop="http://www.springframework.org/schema/aop"
+xsi:schemaLocation=
+"http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!-- 자바코드로 설정파일 만들 때 사용(자바파일에 어노테이션으로 설정하는 것
+	해당 프로그램에서 사용안함) -->
+ 	<context:annotation-config></context:annotation-config>
+ 	
+ 	<!-- 프록시를 이용한 aop설정 -->
+ 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+ 	
+ 	<bean id="myAspect" class="aop02.MyAspect"></bean>
+ 	<bean id="alice" class="aop02.프로게이머"></bean>
+ 	<bean id="bob" class="aop02.프로그래머"></bean>
+ 	
+</beans>
