@@ -12,13 +12,13 @@ public class Book {
 	private String storedimagename;	//폴더에 저장되는 image이름(ex:dkfiwfi)
 	private String author;	//저자
 	private String pubcompany;	//출판사
-	private int price;	//가격
+	private String price;	//가격
 	private String contents;
 	
 	public Book(){}
 	
 	public Book(String bookname, String isbn,String orgimagename,
-			String storedimagename, String author, String pubcompany, int price, String contents) {
+			String storedimagename, String author, String pubcompany, String price, String contents) {
 		this.bookname = bookname;
 		this.isbn = isbn;
 		this.orgimagename = orgimagename;
@@ -85,11 +85,11 @@ public class Book {
 		this.pubcompany = pubcompany;
 	}
 
-	public int getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 

@@ -8,12 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import model.Book;
 import service.BookService;
@@ -98,6 +100,16 @@ public class BookController {
 		return "books/book_list";
 	}
 
-	
+	/**
+	 * NumberFormatException 예외처리(가격 미입력 시 발생)
+	 */
+	@ExceptionHandler(Exception.class)
+	public ModelAndView NumberFormatError(HttpServletRequest req, Exception e) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("exception", e);
+		mav.addObject("url", req.getRequestURL());
+		mav.setViewName("error");
+		return mav;
+	}
 	
 }

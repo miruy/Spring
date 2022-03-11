@@ -18,7 +18,7 @@ public class bookRowMapper implements RowMapper<Book>{
 				rs.getString("STOREDIMAGENAME"),
 				rs.getString("AUTHOR"),
 				rs.getString("PUBCOMPANY"),
-				rs.getInt("PRICE"),
+				rs.getString("PRICE"),
 				rs.getString("CONTENTS"));
 		book.setId(rs.getLong("ID"));
 		return book;

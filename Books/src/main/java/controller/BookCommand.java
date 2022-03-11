@@ -7,7 +7,7 @@ public class BookCommand {
 	private String bookname;
 	private String author;
 	private String pubcompany;
-	private int price;
+	private String price;
 	private MultipartFile file;
 	private String contents;
 	
@@ -35,13 +35,13 @@ public class BookCommand {
 	public void setPubcompany(String pubcompany) {
 		this.pubcompany = pubcompany;
 	}
-	public int getPrice() {
+	
+	public String getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
-	
 	public String getContents() {
 		return contents;
 	}
