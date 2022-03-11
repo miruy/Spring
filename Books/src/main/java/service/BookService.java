@@ -39,9 +39,6 @@ public class BookService {
 			//사용자가 입력한 파일 이름 추출
 			String orgimagename = multipartFile.getOriginalFilename();
 		
-			//확인용
-			System.out.println(orgimagename.toString());
-		
 			//사용자가 입력한 파일 확장자 추출(사용자가 입력한 이미지파일 이름에서 .jpg뺀 부분)
 			String orgimagenameExtension = orgimagename.substring(orgimagename.lastIndexOf("."));
 		
@@ -59,9 +56,6 @@ public class BookService {
 		    
 			book.setOrgimagename(orgimagename);
 			book.setStoredimagename(storedimagename);
-		
-			//확인용
-			System.out.println(file);
 		
 			bookDao.save(book);
 		}
