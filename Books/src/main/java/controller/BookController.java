@@ -67,7 +67,7 @@ public class BookController {
 	@PostMapping("/add")
 	public String save(@ModelAttribute("bookCmd") BookCommand bookCmd, Errors errors, HttpServletRequest request) throws IllegalStateException, IOException {
 		
-		new BookValidator().validate(bookCmd, errors);
+		new AlreadyRegisterBookValidator().validate(bookCmd, errors);
 		if(errors.hasErrors()) {
 			return "books/book_reg_form";
 		}
@@ -90,7 +90,7 @@ public class BookController {
 	 * 도서 검색
 	 */
 	@RequestMapping("/search")
-	public String search (@ModelAttribute("searchCmd") SearchCommand searchCmd, Model model) {
+	public String search (@ModelAttribute("searchCmd") SearchCommand searchCmd, Model model){
 		if(searchCmd.getKeyword() != null && searchCmd.getOption() != null) {
 			List<Book> books = bookService.search(
 					searchCmd.getOption(), 
@@ -99,17 +99,4 @@ public class BookController {
 		}
 		return "books/book_list";
 	}
-
-	/**
-	 * NumberFormatException 예외처리(가격 미입력 시 발생)
-	 */
-	@ExceptionHandler(Exception.class)
-	public ModelAndView NumberFormatError(HttpServletRequest req, Exception e) {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("exception", e);
-		mav.addObject("url", req.getRequestURL());
-		mav.setViewName("error");
-		return mav;
-	}
-	
 }

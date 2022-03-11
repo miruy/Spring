@@ -4,7 +4,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-public class BookValidator implements Validator{
+public class AlreadyRegisterBookValidator implements Validator{
 	
 	@Override
 	public boolean supports(Class<?> arg0) {
@@ -18,7 +18,7 @@ public class BookValidator implements Validator{
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "author", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pubcompany", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "price", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "file", "required");
+		ValidationUtils.rejectIfEmpty(errors, "file", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "contents", "required");
 	}
 }

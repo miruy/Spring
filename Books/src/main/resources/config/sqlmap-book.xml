@@ -10,13 +10,13 @@
 
 	<select id="search" parameterType="HashMap" resultType="book">
 		<if test="option  == 'bookname'">
-		 	SELECT * FROM book WHERE bookname LIKE '%'||#{keyword}||'%'
+			SELECT * FROM book WHERE bookname LIKE '%'||#{keyword}||'%'
 		</if>
 		<if test="option  == 'author'">
-		 	SELECT * FROM book WHERE author LIKE '%'||#{keyword}||'%'
+			SELECT * FROM book WHERE author LIKE '%'||#{keyword}||'%'
 		</if>
 		<if test="option  == 'pubcompany'">
-		 	SELECT * FROM book WHERE pubcompany LIKE '%'||#{keyword}||'%'
+			SELECT * FROM book WHERE pubcompany LIKE '%'||#{keyword}||'%'
 		</if>
 	</select>
 
@@ -25,13 +25,18 @@
 	</select>
 
 	<insert id="saveForm" parameterType="book">
-		INSERT INTO book (id, bookname, isbn, orgimagename, storedimagename, author, pubcompany, price, contents)
-		VALUES(book_SEQ.nextval, #{bookname}, #{isbn}, #{orgimagename}, #{storedimagename}, #{author}, #{pubcompany}, #{price}, #{contents})
-			<selectKey keyProperty="id" resultType="Long">
-				SELECT NVL(MAX(id), 0) FROM member
-			</selectKey>
+		INSERT INTO book (id, bookname, isbn, orgimagename, storedimagename,
+		author, pubcompany, price, contents)
+		VALUES(book_SEQ.nextval, #{bookname}, #{isbn}, #{orgimagename}, #{storedimagename}, #{author},
+		#{pubcompany}, #{price}, #{contents})
+		<selectKey keyProperty="id" resultType="Long">
+			SELECT NVL(MAX(id), 0) FROM member
+		</selectKey>
 	</insert>
 
+	<select id="findByIsbn" parameterType="String" resultType="book">
+		SELECT * FROM book WHERE isbn=#{isbn}
+	</select>
 </mapper>
 
 

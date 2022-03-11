@@ -16,7 +16,6 @@
 		<P>
 			검색 키워드 입력 : 
 			<select name="option">
-				<option value="choice">선택</option>
 				<option value="bookname">제목</option>
 				<option value="author">저자</option>
 				<option value="pubcompany">출판사</option>
