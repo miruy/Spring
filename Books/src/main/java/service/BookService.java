@@ -34,7 +34,7 @@ public class BookService {
 		
 		if(alreadyRegisterBook != null) {
 			throw new AlreadyRegisteredBookException(
-					"이미 등록되어 있는 도서입니다. 입력 : " + book.getIsbn()); 
+					"이미 등록되어 있는 도서입니다. 일련번호 : " + book.getIsbn()); 
 		}else {
 			//사용자가 입력한 파일 이름 추출
 			String orgimagename = multipartFile.getOriginalFilename();
