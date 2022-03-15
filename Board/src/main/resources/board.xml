@@ -31,4 +31,29 @@
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation"
+			value="classpath:config/mybatis-config.xml"></property>
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:config/sqlmap-board.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="sqlSessionTemplate"
+		class="org.mybatis.spring.SqlSessionTemplate"
+		destroy-method="clearCache">
+		<constructor-arg ref="sqlSessionFactory"></constructor-arg>
+	</bean>
+	
+	<bean id="boardDao" class="board.dao.BoardDaoMybatis">
+		<constructor-arg ref="sqlSessionTemplate"></constructor-arg>
+	</bean>
+	
+	<bean id="boardServiceImpl" class="board.service.BoardServiceImpl">
+		<property name="boardDao" ref="boardDao"></property>
+	</bean>
 </beans>
