@@ -5,7 +5,7 @@
 <mapper namespace="boardDAO">
 
 	<select id="list" resultType="boardVO">
-		SELECT * FROM BOARD2 ORDER BY seq
+		SELECT * FROM board2 ORDER BY seq
 	</select>
 
 	<select id="select" parameterType="int" resultType="boardVO">

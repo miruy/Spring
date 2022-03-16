@@ -10,8 +10,8 @@
                 
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
                 
-        <property name="java-output-path" value="/Books/target/classes"/>
-        <property name="context-root" value="Board"/>
+        <property name="java-output-path" value="/Board/target/classes"/>
+        <property name="context-root" value="Board2"/>
             
     </wb-module>
     
