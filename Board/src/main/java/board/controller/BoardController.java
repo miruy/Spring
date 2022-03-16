@@ -39,7 +39,7 @@ public class BoardController {
 		return "/board/write";
 	}
 	
-	/* BindingResult 인터페이스 : 매개변수를 Bean 에 binding 할 때 발생한 오류 정보를 받기 
+	/* BindingResult 인터페이스 : 매개변수를 Bean 에 binding 할 때 발생한 오류 정보를 받기 인터페이스(Errors대체가능)
 	 */
 	@RequestMapping(value="board/write", method=RequestMethod.POST)
 	public String write(BoardVO boardVO, BindingResult bindingResult) {
