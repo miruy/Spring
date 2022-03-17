@@ -74,7 +74,7 @@ public class BoardController {
 	 * model.addAttribute()를 하면 model에 담아 보낸 key와 value가 Session에 저장되고
 	 * 다음에 동일한 키로 요청이 왔을 때 세션에 저장되어 있던 해당 키의 데이터를 찾을 수 있음 
 	 * SessionStatus 적용 전 : 데이터 전송과정에서 자동으로 바인딩 되지 못한 값이 0으로 초기화 되기 때문에 DB의 저장된 값과 일치하지 않는다는 에러 발생 
-	 * SEssionStatus 적용 후 : 세션에 값을 저장해놓기 때문에 DB와 값 일치  
+	 * SessionStatus 적용 후 : 세션에 값을 저장해놓기 때문에 DB와 값 일치  
 	 */
 	@RequestMapping(value="/board/edit/{seq}", method=RequestMethod.POST)
 	public String edit(@Valid @ModelAttribute BoardVO boardVO, BindingResult result, int pwd, SessionStatus sessionStatus, Model model) {
