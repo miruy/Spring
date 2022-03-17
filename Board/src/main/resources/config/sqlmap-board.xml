@@ -13,26 +13,22 @@
 	</select>
 	
 	<insert id="insert" parameterType="boardVO">
-		insert into board2 (seq, title, content, writer, password, regDate, cnt)
-		values(board2_SEQ.nextval, #{title}, #{content}, #{writer}, #{password}, SYSDATE, 0);
+		INSERT INTO board2 (seq, title, content, writer, password, regDate, cnt) VALUES(BOARD2_SEQ.nextval, #{title}, #{content}, #{writer}, #{password}, SYSDATE, 0)
 		<selectKey keyProperty="seq" resultType="Integer">
 			SELECT NVL(MAX(seq), 0) FROM board2
 		</selectKey>
 	</insert>
 
 	<update id="update" parameterType="boardVO">
-		UPDATE board2 SET title = #{title},
-			content = #{content},
-				writer = #{writer},
-					WHERE seq = #{seq} AND password = #{password}
+		UPDATE board2 SET title=#{title}, content=#{content}, writer=#{writer} WHERE seq=#{seq} AND password=#{password}
 	</update>
 	
 	<update id="updateCount" parameterType="int">
-		UPDATE board2 SET cnt = cnt+1 WHERE seq = #{seq} AND password = #{password}
+		UPDATE board2 SET cnt=cnt+1 WHERE seq=#{seq}
 	</update>
 	
 	<delete id="delete" parameterType="boardVO">
-		DELETE FROM board2 WHERE seq = #{seq} AND password = #{password}
+		DELETE FROM board2 WHERE seq=#{seq} AND password=#{password}
 	</delete>
 	
 	<delete id="deleteAll">

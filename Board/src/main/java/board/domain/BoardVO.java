@@ -3,6 +3,8 @@ package board.domain;
 import java.sql.Timestamp;
 
 import org.apache.ibatis.type.Alias;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /*
  * myBatis에서 지원하는 별칭 지정 어노테이션,
@@ -11,9 +13,15 @@ import org.apache.ibatis.type.Alias;
 @Alias("BoardVO")
 public class BoardVO {
 	private int seq;	//시퀀스 값
+	
+	@Length(min=2, max=5, message="제목은 2자 이상, 5자 미만 입력해야 합니다.")
 	private String title;	//제목
+	
+	@NotEmpty(message="내용을 입력하세요.")
 	private String content;	//내용
-	private String writer;	//글쓴이
+	
+	@NotEmpty(message="작성자를 입력하세요.")
+	private String writer;	//작성자
 	private int password;	//비밀번호
 	private Timestamp regDate;	//등록일
 	private int cnt;	//조회 수
