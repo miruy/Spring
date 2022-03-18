@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 메일보내기 (send) -->
+<bean id="mailSender"
+	class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	<property name="host" value="smtp.gmail.com"></property>
+	<property name="port" value="587"></property>
+	<property name="username" value="[구글 이메일]"></property>
+	<property name="password" value="[구글 비밀번호]"></property>
+	<property name="defaultEncoding" value="utf-8"></property>
+
+	<!-- email 요청 시 SMTP(간이 전자 우편 전송 프로토콜) -->
+	<property name="javaMailProperties">
+		<props>
+			<prop key="mail.transport.protocol"></prop>
+			<prop key="mail.smtp.auth">true</prop>
+			<prop key="mail.smtp.starttls.enable">true</prop>
+			<prop key="mail.debug">true</prop>
+		</props>
+	</property>
+</bean>
